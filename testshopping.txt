@@ -1,0 +1,172 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : MySQL 5.6
+Source Server Version : 50621
+Source Host           : 127.0.0.1:3306
+Source Database       : testshopping
+
+Target Server Type    : MYSQL
+Target Server Version : 50621
+File Encoding         : 65001
+
+Date: 2017-11-27 14:30:09
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for book
+-- ----------------------------
+DROP TABLE IF EXISTS `book`;
+CREATE TABLE `book` (
+  `id` varchar(100) NOT NULL,
+  `bookname` varchar(100) NOT NULL,
+  `author` varchar(100) DEFAULT NULL,
+  `price` float(8,2) DEFAULT NULL,
+  `imageName` varchar(300) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `category_id` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `category_id_fk` (`category_id`),
+  CONSTRAINT `category_id_fk` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of book
+-- ----------------------------
+INSERT INTO `book` VALUES ('020fada5-6a88-4565-aca5-dbf4cae14d54', '循序渐进Oracle-数据库管理优化与备份恢复', '武松', '112.00', 'd856bf7f-bc64-4119-abba-6e8a5bad9a0f循序渐进Oracle-数据库管理优化与备份恢复.jpg', '工具书', '893c5acd-7d86-4fea-8872-2fc701e42f21');
+INSERT INTO `book` VALUES ('9c232c10-fddb-458d-bbe2-b5f26a59d8d8', 'Android从入门到精通', '宋江', '126.00', '757f5196-30a8-49f9-a8ca-f446498de87aAndroid从入门到精通.jpg', '经典', 'e21af23b-17ff-4d06-874a-ff0ba2f5f870');
+INSERT INTO `book` VALUES ('adfe5e6d-ded1-4d2a-a9e5-3281fd64098f', 'HTML5+CSS3从入门到精通', '李逵', '78.00', '0568bb86-a073-48c5-93bd-14a4c48fbdddHTML5+CSS3从入门到精通.jpg', '基础', 'e21af23b-17ff-4d06-874a-ff0ba2f5f870');
+INSERT INTO `book` VALUES ('d9292323-a1a0-4d0b-96c4-23be83611bcf', 'JavaScript权威指南（第6版）', '林冲', '168.00', 'c2d9de37-dbb5-4b3e-88a0-0550427d628cJavaScript权威指南（第6版）.jpg', '宝典', '6c566739-24ef-4d80-833b-96978f2adccd');
+INSERT INTO `book` VALUES ('fd9f0118-e29d-435e-97d9-81fef27b1b88', 'Hadoop技术内幕', '鲁智深', '255.00', 'ac6bbdac-d553-4c8a-a01e-e3c90a91950fHadoop技术内幕.jpg', '高深', 'e21af23b-17ff-4d06-874a-ff0ba2f5f870');
+
+-- ----------------------------
+-- Table structure for category
+-- ----------------------------
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category` (
+  `id` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of category
+-- ----------------------------
+INSERT INTO `category` VALUES ('08158b69-d763-407b-9e42-95964e8958fb', 'xml编程', 'xml相关');
+INSERT INTO `category` VALUES ('6c566739-24ef-4d80-833b-96978f2adccd', 'javascript编程', 'javascript相关');
+INSERT INTO `category` VALUES ('893c5acd-7d86-4fea-8872-2fc701e42f21', '数据库设计', '数据库相关');
+INSERT INTO `category` VALUES ('e21af23b-17ff-4d06-874a-ff0ba2f5f870', 'java编程', 'java相关');
+INSERT INTO `category` VALUES ('f3f6f3b2-3d0e-4ecf-bbb8-708ab29f5cf3', '计算机网络', '网络相关');
+
+-- ----------------------------
+-- Table structure for orderinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `orderinfo`;
+CREATE TABLE `orderinfo` (
+  `id` varchar(100) NOT NULL,
+  `orderId` varchar(100) NOT NULL,
+  `num` int(11) DEFAULT NULL,
+  `price` float(8,2) DEFAULT NULL,
+  `status` int(11) DEFAULT '0',
+  `user_id` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ordernum` (`orderId`),
+  KEY `user_id_fk` (`user_id`),
+  CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of orderinfo
+-- ----------------------------
+INSERT INTO `orderinfo` VALUES ('180df9be-e3c7-4f72-a070-2741a3ea221b', '201511141447490998127', '2', '3196.00', '1', 'c23246be-e3d7-4bc1-92f3-a3faffb97a97');
+INSERT INTO `orderinfo` VALUES ('291e21d6-0b3c-436d-b913-514f02e1cf97', '201511231448273927017', '2', '190.00', '0', 'c23246be-e3d7-4bc1-92f3-a3faffb97a97');
+INSERT INTO `orderinfo` VALUES ('331bb371-4eac-4f85-8acd-de720145c59f', '201511211448101005707', '3', '32170.00', '1', 'c23246be-e3d7-4bc1-92f3-a3faffb97a97');
+INSERT INTO `orderinfo` VALUES ('463f3465-cb0f-410b-b461-ba7336202efc', '201511231448257428340', '2', '1632.00', '2', 'c23246be-e3d7-4bc1-92f3-a3faffb97a97');
+INSERT INTO `orderinfo` VALUES ('5138d524-df3f-4700-b0fd-b3d46ae70741', '201511221448184661648', '2', '238.00', '2', 'c23246be-e3d7-4bc1-92f3-a3faffb97a97');
+INSERT INTO `orderinfo` VALUES ('5f5444e4-6fc1-40d4-ab43-a33e9003b392', '201511211448103432782', '3', '316.00', '1', 'ad814b07-f2a3-413b-9e89-6d4b2b8cedbb');
+INSERT INTO `orderinfo` VALUES ('6bd23798-46e6-416d-b3d5-cf85671c07c3', '201511231448273350191', '2', '1176.00', '2', 'c23246be-e3d7-4bc1-92f3-a3faffb97a97');
+INSERT INTO `orderinfo` VALUES ('9cd8e25c-89e9-49c4-9d20-104d5cf6c34e', '201711271511763686350', '1', '504.00', '2', '67490e2d-c322-4144-a55b-2bab831e4fd6');
+INSERT INTO `orderinfo` VALUES ('9d0295f5-17b8-4ecf-bf4f-b3f30f933ab2', '201511221448180928045', '2', '1608.00', '1', 'c23246be-e3d7-4bc1-92f3-a3faffb97a97');
+INSERT INTO `orderinfo` VALUES ('a9c2b917-0a5d-45ea-b1e2-fceaa3581037', '201612141481702424862', '2', '238.00', '2', '0c2c063e-35b6-4bab-9cbd-8fb1cf0af0ea');
+INSERT INTO `orderinfo` VALUES ('e7e83cfd-9f4c-4261-a79c-092c805fc924', '201511211448101355750', '5', '34940.00', '2', 'c23246be-e3d7-4bc1-92f3-a3faffb97a97');
+INSERT INTO `orderinfo` VALUES ('ed08ff3f-7720-4007-9b7c-61cf72befd5b', '201511231448257820051', '2', '6348.00', '2', 'c23246be-e3d7-4bc1-92f3-a3faffb97a97');
+
+-- ----------------------------
+-- Table structure for orderitem
+-- ----------------------------
+DROP TABLE IF EXISTS `orderitem`;
+CREATE TABLE `orderitem` (
+  `id` varchar(100) NOT NULL,
+  `num` int(11) DEFAULT NULL,
+  `price` float(8,2) DEFAULT NULL,
+  `orderInfo_id` varchar(100) DEFAULT NULL,
+  `book_id` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `book_id_fk` (`book_id`),
+  KEY `orderInfo_id_fk` (`orderInfo_id`),
+  CONSTRAINT `book_id_fk` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`),
+  CONSTRAINT `orderInfo_id_fk` FOREIGN KEY (`orderInfo_id`) REFERENCES `orderinfo` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of orderitem
+-- ----------------------------
+INSERT INTO `orderitem` VALUES ('25399bb8-2e38-42ce-afa7-06da9c0e5016', '8', '624.00', '463f3465-cb0f-410b-b461-ba7336202efc', 'adfe5e6d-ded1-4d2a-a9e5-3281fd64098f');
+INSERT INTO `orderitem` VALUES ('30eedf75-ee70-4941-ab15-06d927783b88', '1', '126.00', '5138d524-df3f-4700-b0fd-b3d46ae70741', '9c232c10-fddb-458d-bbe2-b5f26a59d8d8');
+INSERT INTO `orderitem` VALUES ('31cfbb3b-92c3-4c92-889b-85e7fed42445', '16', '1792.00', '180df9be-e3c7-4f72-a070-2741a3ea221b', '020fada5-6a88-4565-aca5-dbf4cae14d54');
+INSERT INTO `orderitem` VALUES ('36e9baea-849d-40b2-9b59-8e39ad306f36', '16', '4080.00', 'ed08ff3f-7720-4007-9b7c-61cf72befd5b', 'fd9f0118-e29d-435e-97d9-81fef27b1b88');
+INSERT INTO `orderitem` VALUES ('39f85044-8037-4250-8acf-39ed01ab31be', '12', '2016.00', 'e7e83cfd-9f4c-4261-a79c-092c805fc924', 'd9292323-a1a0-4d0b-96c4-23be83611bcf');
+INSERT INTO `orderitem` VALUES ('42ccdf96-18a7-4a65-b12a-b4b6bdb23bc4', '8', '1008.00', '463f3465-cb0f-410b-b461-ba7336202efc', '9c232c10-fddb-458d-bbe2-b5f26a59d8d8');
+INSERT INTO `orderitem` VALUES ('4d7cc79c-afb0-4be3-b52d-05115694e23d', '198', '24948.00', '331bb371-4eac-4f85-8acd-de720145c59f', '9c232c10-fddb-458d-bbe2-b5f26a59d8d8');
+INSERT INTO `orderitem` VALUES ('4ff20d07-67c3-4b21-a6ec-ca1a15ca282f', '1', '112.00', '291e21d6-0b3c-436d-b913-514f02e1cf97', '020fada5-6a88-4565-aca5-dbf4cae14d54');
+INSERT INTO `orderitem` VALUES ('61179974-2a58-498b-a69b-70dc95d0bfb5', '7', '546.00', '6bd23798-46e6-416d-b3d5-cf85671c07c3', 'adfe5e6d-ded1-4d2a-a9e5-3281fd64098f');
+INSERT INTO `orderitem` VALUES ('61bbbf53-4d7f-46a4-82be-51d7431f8a68', '22', '2464.00', '331bb371-4eac-4f85-8acd-de720145c59f', '020fada5-6a88-4565-aca5-dbf4cae14d54');
+INSERT INTO `orderitem` VALUES ('677e776d-ce3e-4a86-989b-e1f39d5f02b3', '16', '4080.00', 'e7e83cfd-9f4c-4261-a79c-092c805fc924', 'fd9f0118-e29d-435e-97d9-81fef27b1b88');
+INSERT INTO `orderitem` VALUES ('7709dd6f-3e38-4fb8-b3cf-52546fca41e1', '1', '126.00', '5f5444e4-6fc1-40d4-ab43-a33e9003b392', '9c232c10-fddb-458d-bbe2-b5f26a59d8d8');
+INSERT INTO `orderitem` VALUES ('79a06df8-0649-4e03-ab19-b4f3669c7a87', '1', '112.00', '5138d524-df3f-4700-b0fd-b3d46ae70741', '020fada5-6a88-4565-aca5-dbf4cae14d54');
+INSERT INTO `orderitem` VALUES ('7bac01a0-c53b-46f3-9b1f-2b358a997df3', '5', '630.00', '6bd23798-46e6-416d-b3d5-cf85671c07c3', '9c232c10-fddb-458d-bbe2-b5f26a59d8d8');
+INSERT INTO `orderitem` VALUES ('83f87d7a-3a06-4099-85f2-fe73b837c2de', '6', '672.00', '9d0295f5-17b8-4ecf-bf4f-b3f30f933ab2', '020fada5-6a88-4565-aca5-dbf4cae14d54');
+INSERT INTO `orderitem` VALUES ('8754ea8f-2d47-44d1-952d-b0a7f2582081', '66', '8316.00', 'e7e83cfd-9f4c-4261-a79c-092c805fc924', '9c232c10-fddb-458d-bbe2-b5f26a59d8d8');
+INSERT INTO `orderitem` VALUES ('9484ed6e-c3c4-4c7d-a8bb-dbacf5dea101', '1', '112.00', 'a9c2b917-0a5d-45ea-b1e2-fceaa3581037', '020fada5-6a88-4565-aca5-dbf4cae14d54');
+INSERT INTO `orderitem` VALUES ('ae57d8f6-7bf0-4f18-9d97-8827f84ec7c5', '1', '78.00', '291e21d6-0b3c-436d-b913-514f02e1cf97', 'adfe5e6d-ded1-4d2a-a9e5-3281fd64098f');
+INSERT INTO `orderitem` VALUES ('bfb54994-b43e-4194-8c0f-ee3233a654e6', '88', '6864.00', 'e7e83cfd-9f4c-4261-a79c-092c805fc924', 'adfe5e6d-ded1-4d2a-a9e5-3281fd64098f');
+INSERT INTO `orderitem` VALUES ('c14620b4-cc58-4ab2-8b42-9a5143cd38b8', '12', '936.00', '9d0295f5-17b8-4ecf-bf4f-b3f30f933ab2', 'adfe5e6d-ded1-4d2a-a9e5-3281fd64098f');
+INSERT INTO `orderitem` VALUES ('c42464e3-3e0a-472a-a5ff-ffbe91dc495b', '1', '112.00', '5f5444e4-6fc1-40d4-ab43-a33e9003b392', '020fada5-6a88-4565-aca5-dbf4cae14d54');
+INSERT INTO `orderitem` VALUES ('c446c41c-9138-4de1-ae42-2535206a57fa', '18', '1404.00', '180df9be-e3c7-4f72-a070-2741a3ea221b', 'adfe5e6d-ded1-4d2a-a9e5-3281fd64098f');
+INSERT INTO `orderitem` VALUES ('c8b3be02-788e-46f5-ba66-5fe62e8dd923', '1', '126.00', 'a9c2b917-0a5d-45ea-b1e2-fceaa3581037', '9c232c10-fddb-458d-bbe2-b5f26a59d8d8');
+INSERT INTO `orderitem` VALUES ('cede48c3-3d80-4495-9382-44913948c056', '122', '13664.00', 'e7e83cfd-9f4c-4261-a79c-092c805fc924', '020fada5-6a88-4565-aca5-dbf4cae14d54');
+INSERT INTO `orderitem` VALUES ('d3e9888c-52c0-49d7-9ba1-0884dd726d8e', '1', '78.00', '5f5444e4-6fc1-40d4-ab43-a33e9003b392', 'adfe5e6d-ded1-4d2a-a9e5-3281fd64098f');
+INSERT INTO `orderitem` VALUES ('dc776bd1-c92a-4692-8c53-70ae12c1f9ff', '3', '504.00', '9cd8e25c-89e9-49c4-9d20-104d5cf6c34e', 'd9292323-a1a0-4d0b-96c4-23be83611bcf');
+INSERT INTO `orderitem` VALUES ('e8266a4c-fa65-4092-9123-7e4c1d537f64', '61', '4758.00', '331bb371-4eac-4f85-8acd-de720145c59f', 'adfe5e6d-ded1-4d2a-a9e5-3281fd64098f');
+INSERT INTO `orderitem` VALUES ('f8e19d5d-365b-4a67-9fb2-ac42a6e86d55', '18', '2268.00', 'ed08ff3f-7720-4007-9b7c-61cf72befd5b', '9c232c10-fddb-458d-bbe2-b5f26a59d8d8');
+
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `cellphone` varchar(20) DEFAULT NULL,
+  `mobilephone` varchar(20) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES ('0c2c063e-35b6-4bab-9cbd-8fb1cf0af0ea', '吴用', '123', '02700000033', '13000000033', '中国山东', '033@qq.com');
+INSERT INTO `users` VALUES ('538560bd-758a-4967-adb0-20d451914a0c', '鲁智深', '135', '02700000005', '13000000005', '中国武汉', '005@qq.com');
+INSERT INTO `users` VALUES ('67490e2d-c322-4144-a55b-2bab831e4fd6', '李逵', '456', '02700000002', '13000000002', '中国山东', '002@qq.com');
+INSERT INTO `users` VALUES ('ad814b07-f2a3-413b-9e89-6d4b2b8cedbb', '林冲', '789', '02700000003', '13000000003', '中国山东', '003@qq.com');
+INSERT INTO `users` VALUES ('c23246be-e3d7-4bc1-92f3-a3faffb97a97', '宋江', '123', '02700000001', '13000000001', '中国山东', '001@qq.com');
+SET FOREIGN_KEY_CHECKS=1;
