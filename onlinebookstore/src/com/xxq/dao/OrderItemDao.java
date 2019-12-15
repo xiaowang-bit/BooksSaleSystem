@@ -7,8 +7,6 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.xxq.model.Book;
 import com.xxq.model.OrderItem;
 import com.xxq.utils.C3P0Util;
 
