@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>注册</title>
+    <link rel="stylesheet" type="text/css" href="forget_pwd.css"/>
+	<script type="text/javascript">  
+	    <!--用户名验证-->  
+	    function verifyAccount(){  
+	        var reg=/^[a-z|A-Z|0-9|_]{5,19}$/;  
+	        var str=document.getElementById("stu_num").value;  
+	        if(reg.test(str)){  
+	            return true;  
+	        }else{  
+	            document.getElementById("accErr").innerHTML="用户名格式有误,英文字母或阿拉伯数字组合，英文区分大小写，长度为6—20位,请按要求输入";  
+	            return false;  
+	        }  
+	    }  
+	    <!--密码验证-->  
+	    function verifyPwd(){  
+	        var reg=/^[a-z|A-Z|0-9]{6,20}$/;  
+	        var str=document.getElementById("pwd").value;  
+	        if(reg.test(str)){  
+	            return true;  
+	        }else{  
+	            document.getElementById("pwdErr").innerHTML="用户密码格式有误,英文字母阿拉伯数字下划线组合，长度为6—20位，只能以字母开头,请按要求输入";  
+	            return false;  
+	        }  
+	    }  
+	    <!--密码确认-->  
+	    function marryPwd(){  
+	        var pwd=document.getElementById("pwd").value;  
+	        var apwd=document.getElementById("apassword").value;  
+	        if(pwd!=apwd){  
+	            document.getElementById("apwdErr").innerHTML="两次密码不同";  
+	            return false;  
+	        }  
+	        else{  
+	            return true;  
+	        }  
+	  
+	    }    
+	    <!--当控件成为焦点时，清除提示错误信息-->  
+	    function clearScreen(nameval){  
+	        document.getElementById(nameval).style="none";  
+	        document.getElementById(nameval).innerHTML="";  
+	    } 
+	    function submitt(){  
+	        if(verifyAccount()&&verifyPwd()&&marryPwd()&&verifyPrompt()&&verifyEmail()&&verifyCode()&&verifyCheck()){  
+	             alert("提交成功!");  
+	        }else{  
+	             alert("提交失败！请按提示改正再提交！")  
+	        }  
+	    }  
+	</script>  
+</head>
+<body>
+	<div id="register_frame">
+		<form method="post" action="/j2eeProjects/AddStudentServlet">
+			<div id="register_control1">
+				<p><label id="textinfo" >注册信息登记</label></p>
+			</div>
+			
+			<p><label class="label_input">账号</label><input type="text" name="stu_num" id="stu_num" onblur="verifyAccount()" onfocus="clearScreen('accErr')" class="text_field" placeholder="学号/教师号/管理员号"/></p>
+			<div id="accErr" class="errTxt"></div>
+			<p><label class="label_input">学院</label><input type="text" name="academy" id="academy"  class="text_field"/></p>
+			<p><label class="label_input">年级</label><input type="text" name="grade" id="grade"  class="text_field"/></p>
+			<p><label class="label_input">姓名</label><input type="text" name="name" id="name"  class="text_field"/></p>
+			<p><label class="label_input">班级</label><input type="text" name="stu_class" id="stu_class"  class="text_field"/></p>
+			<p><label class="label_input">密码</label><input type="password" name="pwd" id="pwd" onblur="verifyPwd()" onfocus="clearScreen('pwdErr')" class="text_field"/></p>
+			<div id="pwdErr" class="errTxt"></div> 
+			<p><label class="label_input">确认密码</label><input type="password" name="verify_pwd" id="pwd"  class="text_field"/></p>
+			<div id="register_control2" >
+            	<input type="submit" id="btn_login" value="注册" />
+        	</div>
+        	<div id="login_control2" >
+            	<a id="return_login" href="login.html">返回登录</a> 
+       		</div>
+		</form>
+		
+	</div>
+</body>
+</html>
+
+
