@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+
 import com.xxq.model.User;
 import com.xxq.utils.C3P0Util;
 
@@ -185,6 +188,17 @@ public class UserDao {
 			}
 		}
 		
+	}
+	public User searchByUserName(String username) {
+		QueryRunner qr=new QueryRunner(C3P0Util.getDataSource());
+		String sql = "select * from users where username = ?";
+		User user=null;
+		try {
+			user = qr.query(sql,new BeanHandler<User>(User.class), username);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 	
 }

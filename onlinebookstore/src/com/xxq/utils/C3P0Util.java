@@ -1,8 +1,9 @@
 package com.xxq.utils;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-
 import javax.sql.DataSource;
+
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 public class C3P0Util {
     
 	private static ComboPooledDataSource dataSource = new ComboPooledDataSource();
-
+	
     /**
      * 获取连接池对象
      * @return
