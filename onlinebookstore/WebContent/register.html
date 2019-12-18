@@ -16,17 +16,6 @@
 	            return false;  
 	        }  
 	    }  
-	    <!--密码验证-->  
-	    function verifyPwd(){  
-	        var reg=/^[a-z|A-Z|0-9]{6,20}$/;  
-	        var str=document.getElementById("pwd").value;  
-	        if(reg.test(str)){  
-	            return true;  
-	        }else{  
-	            document.getElementById("pwdErr").innerHTML="用户密码格式有误,英文字母阿拉伯数字下划线组合，长度为6—20位，只能以字母开头,请按要求输入";  
-	            return false;  
-	        }  
-	    }  
 	    <!--密码确认-->  
 	    function marryPwd(){  
 	        var pwd=document.getElementById("pwd").value;  
@@ -56,7 +45,7 @@
 </head>
 <body>
 	<div id="register_frame">
-		<form method="post" action="/j2eeProjects/AddStudentServlet">
+		<form method="post" action="AddUserServlet">
 			<div id="register_control1">
 				<p><label id="textinfo" >注册信息登记</label></p>
 			</div>
@@ -67,7 +56,7 @@
 			<p><label class="label_input">座机</label><input type="text" name="cellphone" id="cellphone"  class="text_field"/></p>
 			<p><label class="label_input">地址</label><input type="text" name="address" id="address"  class="text_field"/></p>
 			<p><label class="label_input">邮箱</label><input type="text" name="email" id="email"  class="text_field"/></p>
-			<p><label class="label_input">密码</label><input type="password" name="pwd" id="pwd" onblur="verifyPwd()" onfocus="clearScreen('pwdErr')" class="text_field"/></p>
+			<p><label class="label_input">密码</label><input type="password" name="password" id="password" onblur="verifyPwd()" onfocus="clearScreen('pwdErr')" class="text_field"/></p>
 			<div id="pwdErr" class="errTxt"></div> 
 			<p><label class="label_input">确认密码</label><input type="password" name="verify_pwd" id="pwd"  class="text_field"/></p>
 			<div id="register_control2" >
