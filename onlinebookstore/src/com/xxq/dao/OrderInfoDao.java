@@ -85,4 +85,18 @@ public class OrderInfoDao {
 		}
 		return rows;
 	}
+	public int updateNum(OrderInfo orderInfo) {
+		Connection conn=C3P0Util.getConnection();
+		int rows=0;
+		try {
+			String sql="update orderinfo num=?,price=? where id=?";
+			rows=queryRunner.update(conn, sql, orderInfo.getNum()
+					,orderInfo.getPrice(),orderInfo.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			C3P0Util.close(conn);
+		}
+		return rows;
+	}
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.wax.service.OrderInfoService;
 import com.xxq.model.OrderInfo;
+import com.xxq.utils.CreateOderId;
 
 @WebServlet("/AddOrderInfoServlet")
 public class AddOrderInfoServlet extends HttpServlet {
@@ -21,7 +22,7 @@ public class AddOrderInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		OrderInfo orderInfo=new OrderInfo();
 		orderInfo.setId(request.getParameter("id"));
-		orderInfo.setOrderId(request.getParameter("orderId"));
+		orderInfo.setOrderId(CreateOderId.getOrderCode(Long.parseLong(request.getParameter("user_id"))));
 		orderInfo.setPrice(Integer.parseInt(request.getParameter("price")));
 		orderInfo.setNum(Integer.parseInt(request.getParameter("price")));
 		orderInfo.setUser_id(request.getParameter("user_id"));
