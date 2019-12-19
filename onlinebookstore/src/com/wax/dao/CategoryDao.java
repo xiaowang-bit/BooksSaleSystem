@@ -16,7 +16,7 @@ public class CategoryDao {
 		 * @author 王澳星
 		 */
 		int row=0;
-		String sql="insert into category(id,name,description) vale(?,?,?)";
+		String sql="insert into category(id,name,description) values(?,?,?)";
 		Object[]ob={ct.getId(),ct.getName(),ct.getDescription()};
 		try {
 			row = qr.update(sql,ob);
@@ -26,6 +26,21 @@ public class CategoryDao {
 		return row;
 	}
 	public List<Category> searchById(String id) {
+		/**
+		 * @param 传入一个category的id
+		 * @return category列表
+		 * @author 王澳星
+		 */
+		List<Category> list=new ArrayList<Category>();
+		String sql="select * from category where id=?";
+		try {
+			list = qr.query(sql, new BeanListHandler<Category>(Category.class),id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public List<Category> searchAll() {
 		/**
 		 * @param 传入一个category的id
 		 * @return category列表

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.wax.service.CategoryService;
 import com.xxq.model.Category;
+import com.xxq.utils.CreateOderId;
 
 @WebServlet("/AddCategoryServlet")
 public class AddCategoryServlet extends HttpServlet {
@@ -21,16 +22,18 @@ public class AddCategoryServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String category_id = request.getParameter("category_id");
+		String category_id = CreateOderId.getAgainCode(System.currentTimeMillis());
 		String category_name = request.getParameter("category_name");
 		String category_description = request.getParameter("category_description");
 		CategoryService categoryService=new CategoryService();
 		Category ct=new Category(category_id, category_name, category_description);
 		int row = categoryService.addCategory(ct);
 		if(row>0) {
-			request.getRequestDispatcher("");
+			CategoryService cs=new CategoryService();
+			request.getSession().setAttribute("categorys",cs.getAllCategory());
+			request.getRequestDispatcher("ManageShop.jsp").forward(request, response);
 		}else {
-			response.sendRedirect("");
+			response.sendRedirect("fail.jsp");
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

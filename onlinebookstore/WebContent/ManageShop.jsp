@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
 <head>
@@ -38,7 +42,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="welcome-message">
-                                <p>欢迎来到网上书店</p>
+                                <p>欢迎来回来</p>
                             </div>
                         </div>
                     </div>
@@ -59,7 +63,7 @@
                                     <!-- main menu navbar start -->
                                     <nav class="desktop-menu">
                                         <ul>
-                                            <li><a href="shop.html" style="font-size: 38px;">网 上 书 店</a></li>
+                                            <li><a href="shop.html" style="font-size: 38px;align-content: center;" >网 上 书 店</a></li>
                                         </ul>
                                     </nav>
                                     <!-- main menu navbar end -->
@@ -68,41 +72,7 @@
                         </div>
                         <!-- main menu area end -->
 
-                        <!-- mini cart area start -->
-                        <div class="col-lg-3">
-                            <div class="header-configure-wrapper">
-                                <div class="header-configure-area">
-                                    <ul class="nav justify-content-end">
-                                        <li class="user-hover">
-                                            <a href="#">
-                                                <i class="lnr lnr-user"></i>
-                                            </a>
-                                            <ul class="dropdown-list">
-                                                <li><a href="#">登录</a></li>
-                                                <li><a href="#">账户信息</a></li>
-                                                <li><a href="#">注册</a></li>
-                                                <li><a href="#">注销</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li>
-                                            <a href="#" class="minicart-btn">
-                                                <i class="lnr lnr-cart"></i>
-                                                <div class="notification">2</div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="minicart-btn">
-                                                <i class="lnr lnr-cart"></i>
-                                                <div class="notification">2</div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- mini cart area end -->
-
+                      
                     </div>
                 </div>
             </div>
@@ -133,7 +103,6 @@
         <div class="shop-main-wrapper section-space pb-0">
             <div class="container">
                 <div class="row">
-
                     <!-- shop main wrapper start -->
                     <div class="col-lg-12 order-1 order-lg-2">
                         <div class="shop-product-wrapper">
@@ -141,27 +110,25 @@
                             <div class="shop-top-bar">
                                 <div class="row align-items-center">
                                     
-                                    <div class="col-lg-7 col-md-6 order-2 order-md-1">
-                                        <div class="top-bar-left">
-                                            <div class="product-short">
-                                                <form method="post" action="SearchCategoryListServlet">
-												<input type="text"name="category_name" style="color: ;border-radius: 10px;">
-                                            	<input type="submit"value="分类查询" style="color: ;border-radius: 10px;">
-                                            	</form>                                            
-                                            </div>
-                                        </div>
+                                    <div class="product-short">
+                                             <form method="post" action="SearchCategoryListServlet">
+											<input type="text"name="category_name" style="color: ;border-radius: 10px;">
+                                         	<input type="submit"value="分类查询" style="color: ;border-radius: 10px;">
+                                         	</form>                                            
                                     </div>
-                                    <div class="col-lg-5 col-md-6 order-1 order-md-2">
-                                        <div class="top-bar-right">
-                                            <div class="product-short">
-                                            <form method="post" action="SearchBookListServlet">
-                                            	 <input type="text"name="book_name" style="color: ;border-radius: 10px;">
-                                            	 <input type="submit"value="图书名" style="color: ;border-radius: 10px;">
-                                            </form>
-                                                
-                                            </div>
-                                        </div>
+                                         
+                                    <div class="product-short">
+                                         <form method="post" action="SearchBookListServlet">
+                                         	 <input type="text"name="book_name" style="color: ;border-radius: 10px;">
+                                         	 <input type="submit"value="图书名" style="color: ;border-radius: 10px;">
+                                         </form>
                                     </div>
+                                    <div class="product-short1">
+                                             <button type="button" value="添加图书" style="color: ;border-radius: 10px;" onclick="addProduct()">添加图书</button>                                        
+                                     </div>
+                                     <div class="product-short1">
+                                             <button type="button" value="图书分类" style="color: ;border-radius: 10px;" onclick="addCategory()">图书分类</button>                                        
+                                     </div>
                                 </div>
                             </div>
                             <!-- shop product top wrap start -->
@@ -175,7 +142,6 @@
                                         <figure class="product-thumb">
                                             <a href="product-details.html">
                                                 <img class="pri-img" src="assets/img/product/product-3.jpg" alt="product">
-                                                <img class="sec-img" src="assets/img/product/product-1.jpg" alt="product">
                                             </a>
                                             <div class="product-badge">
                                                 <div class="product-label new">
@@ -576,6 +542,105 @@
     <script src="assets/js/vendor.js"></script>
     <!-- Active Js -->
     <script src="assets/js/active.js"></script>
+    <form action="AddProductServlet" method="post" class="form-horizontal" enctype="multipart/form-data">
+	        <div class="modal" id="model_addProduct">
+	    	    <div class="modal-dialog">
+	    		    <div class="modal-content">
+	    			    <div class="modal-header">
+	    				    <h1>添加图书</h1>
+	    			    </div>
+		    			<select>
+	    			    	<c:forEach var = "item" items="${sessionScope.categorys }">
+		    			    	<option value="${item.id}">${item.name}</option>
+	    			    	</c:forEach>
+		    			</select>
+	    			    <div class="modal-body">
+	    				    <div class="form-group">
+	    					    <label class="control-label col-sm-4">书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
+	    					    <div class="col-sm-6">
+	    						    <input type="text" class="form-control"
+	    							    id="bookname" name="bookname"  />
+	    					    </div>
+	    				    </div>
+	    				    <div class="form-group">
+	    					    <label class="control-label col-sm-4">作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者:</label>
+	    					    <div class="col-sm-6">
+	    						    <input type="text" class="form-control"
+	    							    id="author"  name="author"/>
+	    					    </div>
+	    				    </div>
+	    				    <div class="form-group">
+	    					    <label class="control-label col-sm-4">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格:</label>
+	    					    <div class="col-sm-6">
+	    					    	<input type="text" class="form-control"
+	    							    id="price"  name="price"/>
+	    					    </div>
+	    				    </div>
+	    				    <div class="form-group">
+	    					    <label class="control-label col-sm-4">选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;择&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片:</label>
+	    					    <div class="form-group">
+		    					    <input type="file" name="File" >
+	    					    </div>
+	    				    </div>
+	    				    <div class="form-group">
+	    					    <label class="control-label col-sm-4">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述:</label>
+	    					    <div class="col-sm-6">
+	    						    <textarea class="form-control"
+	    							    id="description" name="description" rows="10" ></textarea>
+	    					    </div>
+	    				    </div>
+                        </div>
+	    			    <div class="modal-footer">
+	    				    <input type="submit" class="btn btn-sm btn-default"value="添加">
+	    				    <input type="reset" class="btn btn-sm btn-default"
+	    					    data-dismiss="modal" value="取消">
+	    			    </div> 
+	    		    </div>
+	    	    </div>
+	        </div>
+	    </form>
+	    
+	    <form action="AddCategoryServlet" method="post" class="form-horizontal">
+	        <div class="modal" id="model_addCategory">
+	    	    <div class="modal-dialog">
+	    		    <div class="modal-content">
+	    			    <div class="modal-header">
+	    				    <h3>添加分类</h3>
+	    			    </div>
+	    			    <div class="modal-body">
+	    				    <div class="form-group">
+	    					    <label class="control-label col-sm-4">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字:</label>
+	    					    <div class="col-sm-6">
+	    						    <input type="text" class="form-control"
+	    							    id="category_name" name="category_name"  />
+	    					    </div>
+	    				    </div>
+	    				    <div class="form-group">
+	    					    <label class="control-label col-sm-4">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述:</label>
+	    					    <div class="col-sm-6">
+	    						    <textarea  class="form-control" id="category_description" rows="10" name="category_description">
+	    							 </textarea>
+	    					    </div>
+	    				    </div>
+                        </div>
+	    			    <div class="modal-footer">
+	    				    <input type="submit" value="添加">
+	    				    <input type="reset"  data-dismiss="modal" value="取消">
+	    			    </div> 
+	    		    </div>
+	    	    </div>
+	        </div>
+	    </form>
+	    
 </body>
-
+<script type="text/javascript">
+		function addProduct()
+		{
+			jQuery("#model_addProduct").modal();
+		}
+		function addCategory()
+		{
+			jQuery("#model_addCategory").modal();
+		}
+</script>
 </html>

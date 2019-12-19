@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.wax.service.CategoryService;
 import com.xxq.model.User;
 import com.zhc.dao.UserDao;
 
@@ -31,7 +32,15 @@ public class LoginServlet extends HttpServlet {
 		if(user!=null&&user.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("login_user", user);
-			request.getRequestDispatcher("index.html").forward(request, response);
+			CategoryService cs=new CategoryService();
+			request.getSession().setAttribute("categorys",cs.getAllCategory());
+			if("Admin88".equals(name)&&user.getPassword().equals(password)) {
+				request.getRequestDispatcher("ManageShop.jsp").forward(request, response);;
+			}else {
+				request.getRequestDispatcher("shop.html").forward(request, response);;
+			}
+		}else {
+			response.sendRedirect("fail.jsp");
 		}
 	}
 

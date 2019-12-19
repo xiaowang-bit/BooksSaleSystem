@@ -1,6 +1,9 @@
 package com.wax.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,15 +27,26 @@ public class AddCarServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		BookService bs=new BookService();
-		OrderItem item=new OrderItem();
-		String book_price = request.getParameter("book_price");
-		item.setBook_id(request.getParameter("book_id"));
-		item.setId(CreateOderId.getOrderCode(System.currentTimeMillis()));
-		Object oldItem = request.getSession().getAttribute("item");
-		if(oldeitem!=null)
-		item.setNum();
-		item.setPrice(item.getNum()*Long.parseLong(book_price));
-		
+		Long book_price = Long.parseLong(request.getParameter("book_price"));
+		String book_id = request.getParameter("book_id");
+		int num = Integer.parseInt(request.getParameter("num"));
+		String id=CreateOderId.getOrderCode(System.currentTimeMillis());
+		List<OrderItem> oldItem = (List<OrderItem>) request.getSession().getAttribute("items");
+		for(OrderItem od:oldItem) {
+			if(book_id.equals(od.getBook_id())){
+				od.setNum(num);
+				od.setPrice(num*book_price);
+			}else {
+				OrderItem item=new OrderItem();
+				item.setId(id);
+				item.setBook_id(book_id);
+				item.setNum(num);
+				item.setPrice(book_price*num);
+				oldItem.add(item);
+			}
+		}
+		request.getSession().setAttribute("items", oldItem);	
+		request.getRequestDispatcher("shop").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

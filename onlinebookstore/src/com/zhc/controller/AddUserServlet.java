@@ -75,15 +75,6 @@ public class AddUserServlet extends HttpServlet {
 		
 		
 		
-		//检测邮箱格式
-		if(email != null) {
-			if (email.matches("^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-z]{2,}$")) {
-				out.print("邮箱格式正确");
-			}else {
-				out.print("邮箱格式错误");
-			}
-		}
-		
 		
 		UserService userService = new UserService();
 		boolean result = userService.addUser(user);

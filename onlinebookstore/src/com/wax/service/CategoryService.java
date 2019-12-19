@@ -17,7 +17,7 @@ public class CategoryService {
 		int row=0;
 		CategoryDao cdao=new CategoryDao();
 		List<Category> categoryList = cdao.searchById(ct.getId());	
-		if (categoryList.size()<=0&&categoryList==null) {
+		if (categoryList.size()<=0||categoryList==null) {
 			row = cdao.insert(ct);
 		}
 		return row;
@@ -31,6 +31,17 @@ public class CategoryService {
 		 List<Category> list=new ArrayList<Category>();
 		 CategoryDao cdao=new CategoryDao();
 		 list = cdao.searchById(id);
+		 return list;
+	}
+	public List<Category> getAllCategory( ) {
+		/**
+		 * @author 王澳星
+		 * @param Category的id
+		 * @return category列表
+		 */
+		 List<Category> list=new ArrayList<Category>();
+		 CategoryDao cdao=new CategoryDao();
+		 list = cdao.searchAll();
 		 return list;
 	}
 }
