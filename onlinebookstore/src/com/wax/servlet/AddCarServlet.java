@@ -7,29 +7,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.wax.service.OrderInfoService;
-import com.xxq.model.OrderInfo;
+import com.wax.service.BookService;
+import com.xxq.model.OrderItem;
 import com.xxq.utils.CreateOderId;
 
-@WebServlet("/AddOrderInfoServlet")
-public class AddOrderInfoServlet extends HttpServlet {
+@WebServlet("/AddCarServlet")
+public class AddCarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public AddOrderInfoServlet() {
+    public AddCarServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");		OrderInfo orderInfo=new OrderInfo();
-		orderInfo.setId(request.getParameter("id"));
-		orderInfo.setOrderId(CreateOderId.getOrderCode(Long.parseLong(request.getParameter("user_id"))));
-		orderInfo.setPrice(Integer.parseInt(request.getParameter("price")));
-		orderInfo.setNum(Integer.parseInt(request.getParameter("price")));
-		orderInfo.setUser_id(request.getParameter("user_id"));
-		OrderInfoService ois=new OrderInfoService();
-		ois.addCar(orderInfo);
+		response.setCharacterEncoding("utf-8");
+		BookService bs=new BookService();
+		OrderItem item=new OrderItem();
+		String book_price = request.getParameter("book_price");
+		item.setBook_id(request.getParameter("book_id"));
+		item.setId(CreateOderId.getOrderCode(System.currentTimeMillis()));
+		Object oldItem = request.getSession().getAttribute("item");
+		if(oldeitem!=null)
+		item.setNum();
+		item.setPrice(item.getNum()*Long.parseLong(book_price));
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

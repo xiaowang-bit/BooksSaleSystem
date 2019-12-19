@@ -24,7 +24,7 @@ public class BookService {
 		return row;
 	}
 	@SuppressWarnings("unused")
-	public int addOrderInfo(Book book,String user_id) {
+	public int addBookToMyCar(Book book,String user_id) {
 		/**
 		 * @author 王澳星
 		 * @param Book对象，用户id
