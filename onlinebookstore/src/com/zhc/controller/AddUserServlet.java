@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import com.xxq.model.User;
 import com.xxq.utils.CreateOderId;
@@ -45,45 +46,50 @@ public class AddUserServlet extends HttpServlet {
 		//用户名正则,4到16位（字母，数字，下划线，减号）
 		if(username.matches("^[a-zA-Z0-9_-]{4,16}$")) {
 			out.print("用户名格式正确");
+			//密码正则：至少8个字符，至少1个大写字母，1个小写字母和1个数字
+			if(password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+				out.print("密码格式正确");
+				//验证cellphone的正则
+				if(cellphone.matches("^[0][1-9]{2,3}[0-9]{5,10}$")) {
+					out.print("cellphone格式正确");
+					//手机号正则
+					if(mobilephone != null) {
+						if(mobilephone.matches("^[1]([3-9])[0-9]{9}$")) {
+							out.print("手机号格式正确");
+							UserService userService = new UserService();
+							boolean result = userService.addUser(user);
+							if(result) {
+								Object[] options = { "确定" }; 
+					        	JOptionPane.showOptionDialog(null, "注册成功！", "提示", 
+					        	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+					        	null, options, options[0]); 
+								request.getRequestDispatcher("login.html");
+							}else {
+								out.print("注册失败！");
+							}
+						}else {
+							out.print("手机号格式错误");
+						}
+					}
+				}else {
+					out.print("cellphone格式错误");
+				}
+			}else {
+				out.print("密码格式错误");
+			}
 		}else {
 			out.print("用户名格式错误");
 		}
 		
-		//密码正则：至少8个字符，至少1个大写字母，1个小写字母和1个数字
-		if(password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
-			out.print("密码格式正确");
-		}else {
-			out.print("密码格式错误");
-		}
-		
-		//验证cellphone的正则
-		if(cellphone.matches("^[0][1-9]{2,3}[0-9]{5,10}$")) {
-			out.print("cellphone格式正确");
-		}else {
-			out.print("cellphone格式错误");
-		}
-		
-		//手机号正则
-		if(mobilephone != null) {
-			if(mobilephone.matches("^[1]([3-9])[0-9]{9}$")) {
-				out.print("手机号格式正确");
-			}else {
-				out.print("手机号格式错误");
-			}
-		}
 		
 		
 		
 		
 		
-		UserService userService = new UserService();
-		boolean result = userService.addUser(user);
 		
-		if(result) {
-			out.print("注册成功！");
-		}else {
-			out.print("注册失败！");
-		}
+		
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

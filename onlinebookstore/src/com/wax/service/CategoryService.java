@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.wax.dao.CategoryDao;
 import com.xxq.model.Category;
+import com.xxq.utils.C3P0Util;
 
 public class CategoryService {
 	@SuppressWarnings("unused")
@@ -33,7 +34,7 @@ public class CategoryService {
 		 list = cdao.searchById(id);
 		 return list;
 	}
-	public List<Category> getAllCategory( ) {
+	public List<Category> getAllCategory() {
 		/**
 		 * @author 王澳星
 		 * @param Category的id
@@ -44,4 +45,9 @@ public class CategoryService {
 		 list = cdao.searchAll();
 		 return list;
 	}
+	public int getTotalCount() {
+		String sql = "select count(1) from Category ";
+		return C3P0Util.getTotalCount(sql);
+		
+}
 }

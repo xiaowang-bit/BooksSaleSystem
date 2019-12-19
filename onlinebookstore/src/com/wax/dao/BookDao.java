@@ -20,7 +20,7 @@ public class BookDao {
 		 */
 		int row=0;
 		String sql="insert into book(id,bookname,author,price,imageName,description,category_id) "
-				+ "vale(?,?,?,?,?,?,?)";
+				+ "values(?,?,?,?,?,?,?)";
 		Object[]ob={book.getId(),book.getBookname(),book.getAuthor(),book.getPrice(),book.getImageName(),book.getDescription(),book.getCategory_id()};
 		try {
 			row = qr.update(sql,ob);
@@ -36,9 +36,24 @@ public class BookDao {
 		 * @author 王澳星
 		 */
 		List<Book> list=new ArrayList<Book>();
-		String sql="select * from book";
+		String sql="select * from book where id=?";
 		try {
-			list = qr.query(sql, new BeanListHandler<Book>(Book.class));
+			list = qr.query(sql, new BeanListHandler<Book>(Book.class),id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public List<Book> searchAll(int currentPage,int pagesize) {
+		/**
+		 * @param 传入一个Book的id
+		 * @return Book列表
+		 * @author 王澳星
+		 */
+		List<Book> list=new ArrayList<Book>();
+		String sql="select * from book limit ?,?";
+		try {
+			list = qr.query(sql, new BeanListHandler<Book>(Book.class),(currentPage-1)*pagesize,pagesize);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

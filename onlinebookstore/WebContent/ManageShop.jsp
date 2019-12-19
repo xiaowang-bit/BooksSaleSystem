@@ -32,8 +32,6 @@
 
 <body>
 
-    <!-- Start Header Area -->
-    <header class="header-area">
         <!-- main header start -->
         <div class="main-header d-none d-lg-block">
             <!-- header top start -->
@@ -123,273 +121,41 @@
                                          	 <input type="submit"value="图书名" style="color: ;border-radius: 10px;">
                                          </form>
                                     </div>
-                                    <div class="product-short1">
+                                    <div class="product-short">
                                              <button type="button" value="添加图书" style="color: ;border-radius: 10px;" onclick="addProduct()">添加图书</button>                                        
                                      </div>
-                                     <div class="product-short1">
+                                     <div class="product-short">
                                              <button type="button" value="图书分类" style="color: ;border-radius: 10px;" onclick="addCategory()">图书分类</button>                                        
                                      </div>
                                 </div>
                             </div>
                             <!-- shop product top wrap start -->
-
+							
                             <!-- product item list wrapper start -->
                             <div class="shop-product-wrap grid-view row mbn-40">
+                            	<c:forEach var = "item" items="${sessionScope.books }">
                                 <!-- product single item start -->
                                 <div class="col-md-3 col-sm-6">
                                     <!-- product grid start -->
                                     <div class="product-item">
                                         <figure class="product-thumb">
                                             <a href="product-details.html">
-                                                <img class="pri-img" src="assets/img/product/product-3.jpg" alt="product">
+                                                <img class="pri-img" src=".${item.imageName}" alt="product">
+                                                <img class="sec-img" src=".${item.imageName}" alt="product">
                                             </a>
-                                            <div class="product-badge">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>4%</span>
-                                                </div>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="lnr lnr-magnifier"></i></span></a>
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to Cart"><i class="lnr lnr-cart"></i></a>
-                                            </div>
                                         </figure>
                                         <div class="product-caption">
                                             <p class="product-name">
-                                                <a href="product-details.html">图书11</a>
+                                                <a href="product-details.html">${item.bookname}</a>
                                             </p>
                                             <div class="price-box">
-                                                <span class="price-regular">$40.00</span>
-                                                <span class="price-old"><del>$50.00</del></span>
+                                                <span class="price-regular">${item.price}</span>
                                             </div>
                                         </div>
                                     </div>
+                                 </div>
                                     <!-- product grid end -->
-
-
-
-                                    <!-- product list item end -->
-                                    <div class="product-list-item">
-                                        <figure class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img class="pri-img" src="assets/img/product/product-7.jpg" alt="product">
-                                                <img class="sec-img" src="assets/img/product/product-5.jpg" alt="product">
-                                            </a>
-                                            <div class="product-badge">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>10%</span>
-                                                </div>
-                                            </div>
-                                        </figure>
-                                        <div class="product-content-list">
-                                            <h5 class="product-name"><a href="product-details.html">图书16</a></h5>
-                                            <div class="price-box">
-                                                <span class="price-regular">$40.00</span>
-                                                <span class="price-old"><del>$50.00</del></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde perspiciatis
-                                                quod numquam, sit fugiat, deserunt ipsa mollitia sunt quam corporis ullam
-                                                rem, accusantium adipisci officia eaque.
-                                            </p>
-                                            <div class="button-group-list">
-                                                <a class="btn-big" href="#" data-toggle="tooltip" title="Add to Cart"><i class="lnr lnr-cart"></i>Add to Cart</a>
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" title="Quick View"><i class="lnr lnr-magnifier"></i></span></a>
-                                                <a href="#" data-toggle="tooltip" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- product list item end -->
-                                </div>
-                                <!-- product single item start -->
-
-                                <!-- product single item start -->
-                                <div class="col-md-3 col-sm-6">
-                                    <!-- product grid start -->
-                                    <div class="product-item">
-                                        <figure class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img class="pri-img" src="assets/img/product/product-9.jpg" alt="product">
-                                                <img class="sec-img" src="assets/img/product/product-7.jpg" alt="product">
-                                            </a>
-                                            <div class="product-badge">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>50%</span>
-                                                </div>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="lnr lnr-magnifier"></i></span></a>
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to Cart"><i class="lnr lnr-cart"></i></a>
-                                            </div>
-                                        </figure>
-                                        <div class="product-caption">
-                                            <p class="product-name">
-                                                <a href="product-details.html">图书17</a>
-                                            </p>
-                                            <div class="price-box">
-                                                <span class="price-regular">$10.00</span>
-                                                <span class="price-old"><del>$20.00</del></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- product grid end -->
-
-                                    <!-- product list item end -->
-                                    <div class="product-list-item">
-                                        <figure class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img class="pri-img" src="assets/img/product/product-9.jpg" alt="product">
-                                                <img class="sec-img" src="assets/img/product/product-7.jpg" alt="product">
-                                            </a>
-                                            <div class="product-badge">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>10%</span>
-                                                </div>
-                                            </div>
-                                        </figure>
-                                        <div class="product-content-list">
-                                            <h5 class="product-name"><a href="product-details.html">图书18</a></h5>
-                                            <div class="price-box">
-                                                <span class="price-regular">$30.00</span>
-                                                <span class="price-old"><del>$40.00</del></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde perspiciatis
-                                                quod numquam, sit fugiat, deserunt ipsa mollitia sunt quam corporis ullam
-                                                rem, accusantium adipisci officia eaque.
-                                            </p>
-                                            <div class="button-group-list">
-                                                <a class="btn-big" href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart"><i class="lnr lnr-cart"></i>Add to Cart</a>
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="top" title="Quick View"><i class="lnr lnr-magnifier"></i></span></a>
-                                                <a href="#" data-toggle="tooltip" data-placement="top" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- product list item end -->
-                                </div>
-                                <!-- product single item start -->
-
-                                <!-- product single item start -->
-                                <div class="col-md-3 col-sm-6">
-                                    <!-- product grid start -->
-                                    <div class="product-item">
-                                        <figure class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img class="pri-img" src="assets/img/product/product-11.jpg" alt="product">
-                                                <img class="sec-img" src="assets/img/product/product-12.jpg" alt="product">
-                                            </a>
-                                            <div class="product-badge">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>12%</span>
-                                                </div>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="lnr lnr-magnifier"></i></span></a>
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to Cart"><i class="lnr lnr-cart"></i></a>
-                                            </div>
-                                        </figure>
-                                        <div class="product-caption">
-                                            <p class="product-name">
-                                                <a href="product-details.html">Hyacinth white stick</a>
-                                            </p>
-                                            <div class="price-box">
-                                                <span class="price-regular">$90.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- product grid end -->
-
-                                    <!-- product list item end -->
-                                    <div class="product-list-item">
-                                        <figure class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img class="pri-img" src="assets/img/product/product-11.jpg" alt="product">
-                                                <img class="sec-img" src="assets/img/product/product-12.jpg" alt="product">
-                                            </a>
-                                            <div class="product-badge">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>10%</span>
-                                                </div>
-                                            </div>
-                                        </figure>
-                                        <div class="product-content-list">
-                                            <h5 class="product-name"><a href="product-details.html">图书19</a></h5>
-                                            <div class="price-box">
-                                                <span class="price-regular">$10.00</span>
-                                                <span class="price-old"><del>$20.00</del></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde perspiciatis
-                                                quod numquam, sit fugiat, deserunt ipsa mollitia sunt quam corporis ullam
-                                                rem, accusantium adipisci officia eaque.
-                                            </p>
-                                            <div class="button-group-list">
-                                                <a class="btn-big" href="#" data-toggle="tooltip" title="Add to Cart"><i class="lnr lnr-cart"></i>Add to Cart</a>
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" title="Quick View"><i class="lnr lnr-magnifier"></i></span></a>
-                                                <a href="#" data-toggle="tooltip" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- product list item end -->
-                                </div>
-                                <!-- product single item start -->
-
-                                <!-- product single item start -->
-                                <div class="col-md-3 col-sm-6">
-                                    <!-- product grid start -->
-                                    <div class="product-item">
-                                        <figure class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img class="pri-img" src="assets/img/product/product-8.jpg" alt="product">
-                                                <img class="sec-img" src="assets/img/product/product-6.jpg" alt="product">
-                                            </a>
-                                            <div class="product-badge">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>20%</span>
-                                                </div>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to wishlist"><i class="lnr lnr-heart"></i></a>
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="lnr lnr-magnifier"></i></span></a>
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to Cart"><i class="lnr lnr-cart"></i></a>
-                                            </div>
-                                        </figure>
-                                        <div class="product-caption">
-                                            <p class="product-name">
-                                                <a href="product-details.html">图书20</a>
-                                            </p>
-                                            <div class="price-box">
-                                                <span class="price-regular">$30.00</span>
-                                                <span class="price-old"><del>$40.00</del></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- product grid end -->
-
-
-                                   
-                                </div>
-                                <!-- product single item start -->
+                                 </c:forEach>
                             </div>
                             <!-- product item list wrapper end -->
 
@@ -549,7 +315,7 @@
 	    			    <div class="modal-header">
 	    				    <h1>添加图书</h1>
 	    			    </div>
-		    			<select>
+		    			<select name="categoryname">
 	    			    	<c:forEach var = "item" items="${sessionScope.categorys }">
 		    			    	<option value="${item.id}">${item.name}</option>
 	    			    	</c:forEach>

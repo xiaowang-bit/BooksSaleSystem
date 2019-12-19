@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>购物车</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/carts.css">
+</head>
+<body>
+    <section class="cartMain">
+        <div class="cartMain_hd">
+            <ul class="order_lists cartTop">
+                <li class="list_chk">
+                    <!--所有商品全选-->
+                    <input type="checkbox" id="all" class="whole_check">
+                    <label for="all"></label>
+                    全选
+                </li>
+                <li class="list_con">商品信息</li>
+                <li class="list_info">商品参数</li>
+                <li class="list_price">单价</li>
+                <li class="list_amount">数量</li>
+                <li class="list_sum">金额</li>
+                <li class="list_op"><button class="delAllBtn">全部删除</button></li>
+            </ul>
+        </div>
+
+        <div class="cartBox">
+            <div class="shop_info">
+                <!-- <div class="all_check">
+                   
+                    <input type="checkbox" id="shop_a" class="shopChoice">
+                    <label for="shop_a" class="shop"></label>
+                </div> -->
+                <!-- <div class="shop_name">
+                    店铺：<a href="javascript:;">搜猎人艺术生活</a>
+                </div> -->
+            </div>
+            <div class="order_content">
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_2" class="son_check">
+                        <label for="checkbox_2"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">
+                        循序渐进Oracle-数据库管理优化与备份恢复</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>武松</p>
+                        <p>工具书</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥112</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥112</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul>
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_3" class="son_check">
+                        <label for="checkbox_3"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="images/2.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">Android从入门到精通</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>宋江</p>
+                        <p>经典</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥126</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥126</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul>
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_6" class="son_check">
+                        <label for="checkbox_6"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="images/3.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">HTML5+CSS3从入门到精通</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>李逵</p>
+                        <p>基础</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥78</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥78</p>
+                    </li>
+                    <li class="list_op">
+                        <!-- <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p> -->
+                        <p  class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul>
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_7" class="son_check">
+                        <label for="checkbox_7"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="images/5.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">HTML5+CSS3从入门到精通</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>鲁智深</p>
+                        <p>高深</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥255</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥255</p>
+                    </li>
+                    <li class="list_op">
+                        <!-- <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p> -->
+                        <p  class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul>
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_8" class="son_check">
+                        <label for="checkbox_8"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="images/4.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">JavaScript权威指南（第6版）</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>林冲</p>
+                        <p>宝典</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥168</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥168</p>
+                    </li>
+                    <li class="list_op">
+                        <!-- <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p> -->
+                        <p  class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		<a href="#"><button value="提交订单"></button></a>
+        
+        
+        <!--底部-->
+        <div class="bar-wrapper">
+            <div class="bar-right">
+                <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
+                <div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
+                <div class="calBtn"><a href="javascript:;">结算</a></div>
+            </div>
+        </div>
+    </section>
+    <section class="model_bg"></section>
+    <section class="my_model">
+        <p class="title">删除宝贝<span class="closeModel">X</span></p>
+        <p>您确认要删除该宝贝吗？</p>
+        <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a></div>
+    </section>
+    <section class="my_model2">
+        <p class="title2">删除全部宝贝<span class="closeModel2">X</span></p>
+        <p>您确认要删除所选择的全部宝贝吗？</p>
+        <div class="opBtn2"><a href="javascript:;" class="dialog-sure2">确定</a><a href="javascript:;" class="dialog-close2">关闭</a></div>
+    </section>
+	
+    <script src="js/jquery.min.js"></script>
+    <script src="js/carts.js"></script>
+</body>
+</html>

@@ -4,13 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -25,7 +27,7 @@ import com.xxq.utils.CreateOderId;
 
 
 
-
+@WebServlet("/AddProductServlet")
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -59,7 +61,7 @@ public class AddProductServlet extends HttpServlet {
 					FileItem fileItem = it.next();
 					String fieldName= fileItem.getFieldName();
 					if(fileItem.isFormField()) {
-						if("category".equals(fieldName)) {
+						if("categoryname".equals(fieldName)) {
 							category= fileItem.getString("utf-8");
 							book.setCategory_id(category);
 						}
@@ -67,7 +69,7 @@ public class AddProductServlet extends HttpServlet {
 							book.setBookname(fileItem.getString("utf-8"));
 						}
 						if("price".equals(fieldName)) {
-							book.setPrice(Long.parseLong(fileItem.getString("utf-8")));
+							book.setPrice(Float.parseFloat(fileItem.getString("utf-8")));
 						}
 						if("author".equals(fieldName)) {
 							book.setAuthor(fileItem.getString("utf-8"));
@@ -94,9 +96,6 @@ public class AddProductServlet extends HttpServlet {
 						filename = filename.substring(filename.lastIndexOf("\\")+1);
 						//得到上传文件的扩展名
 						String fileExtName = filename.substring(filename.lastIndexOf(".")+1);
-						if(!"png".equals(fileExtName)||!"jpg".equals(fileExtName)){
-							continue;
-						}
 						//如果需要限制上传的文件类型，那么可以通过文件的扩展名来判断上传的文件类型是否合法
 						String savePath=this.getServletContext().getRealPath("/assets/img/product/");
 						//得到文件保存的名称
@@ -112,7 +111,11 @@ public class AddProductServlet extends HttpServlet {
 						BookService dao=new BookService();
 						int row = dao.addBook(book);
 						if(row>0){	
-							response.sendRedirect("success.jsp");
+							Object[] options = { "确定" }; 
+				        	JOptionPane.showOptionDialog(null, "添加成功！", "提示", 
+				        	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+				        	null, options, options[0]); 
+							request.getRequestDispatcher("ManageShop.jsp");
 						}else{
 							response.sendRedirect("fail.jsp");
 						}

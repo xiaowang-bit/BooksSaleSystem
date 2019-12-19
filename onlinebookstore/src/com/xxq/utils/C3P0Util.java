@@ -66,5 +66,24 @@ public class C3P0Util {
     			}
     		}
         }
+    public static int getTotalCount(String sql) {
+		int count= -1;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			pstmt = getConnection().prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			release( rs, pstmt,getConnection());
+		}
+		return count;
+	}
 }
 
