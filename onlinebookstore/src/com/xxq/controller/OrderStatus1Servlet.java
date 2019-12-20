@@ -33,7 +33,9 @@ public class OrderStatus1Servlet extends HttpServlet {
 		OrderInfoService orderInfoService=new OrderInfoService();
 		//返回status=1的商品(已付款)给页面，作为代付款订单
 		List<OrderInfo> orderInfos=orderInfoService.getByStatus(1);
-		request.setAttribute("payed", orderInfos);
+		request.setAttribute("will_pay", orderInfos);
+		request.getRequestDispatcher("AllOrder.jsp").forward(request, response);
+
 //		String jsString=JSONObject.toJSONString(orderInfos);
 //		response.getWriter().write(jsString);
 	}

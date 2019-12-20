@@ -80,13 +80,13 @@
 <div class="container-fluid my-order-page">
     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link" id="unpay-tab" data-toggle="tab" href="#unpay" role="tab" aria-controls="home" aria-selected="true">待付款订单</a>
+        <a class="nav-link"  href="OrderStatus0Servlet" role="tab" aria-controls="home" aria-selected="true">待付款订单</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="pay-tab" data-toggle="tab" href="#pay" role="tab" aria-controls="profile" aria-selected="false">已付款订单</a>
+        <a class="nav-link"  href="OrderStatus1Servlet" role="tab" aria-controls="profile" aria-selected="false">已付款订单</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="complete-tab" data-toggle="tab" href="#complete" role="tab" aria-controls="contact" aria-selected="false">已收货订单</a>
+        <a class="nav-link"   href="OrderStatus2Servlet" role="tab" aria-controls="contact" aria-selected="false">已收货订单</a>
       </li>
     </ul>
 <!-- 未付款表格1 -->
@@ -100,6 +100,7 @@
           <th scope="col">订单编号</th>
           <th scope="col">商品数量</th>
           <th scope="col">小计</th>
+          <th scope="col">操作</th>
         </tr>
       </thead>
 <!-- 假数据 -->
@@ -108,8 +109,9 @@
           <tr>
             <th scope="row">1</th>
             <td>${item.id }</td>
-            <td>${item.id }</td>
-            <td>${item.id }</td>
+            <td>${item.num }</td>
+            <td>${item.price }</td>
+            <td><a href="OrderToDeleteServlet?$item.id =${item.id}">删除</a>&nbsp;<a href="OrderToPayServlet?$item.id =${item.id}">提交</a></td>
           </tr>
           </c:forEach>
         </tbody>
@@ -134,157 +136,6 @@
       </nav>
 
   </div>
-</div>
-
-
-<!-- 表格2 -->
-  <div class="tab-pane fade" id="pay" role="tabpanel" aria-labelledby="pay-tab">
-	<div class="table-responsive">
-	<table class="table  table-hover table-bordered" id="status1"><!-- table-striped -->
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">订单编号</th>
-        <th scope="col">书籍名称</th>
-        <th scope="col">商品单价</th>
-        <th scope="col">商品数量</th>
-        <th scope="col">商品总价</th>
-      </tr>
-    </thead>
-  <!-- 假数据 -->
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">5</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-
-<!-- 分页2 -->
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-  </div>
-
-
-
-<!-- 表格3 -->
-  <div class="tab-pane fade" id="complete" role="tabpanel" aria-labelledby="complete-tab">
-	<div class="table-responsive">
-	<table class="table table-hover table-bordered" id="status2">
-  <thead>
-    <tr>
-       <th scope="col"></th>
-      <th scope="col">订单编号</th>
-      <th scope="col">书籍名称</th>
-      <th scope="col">商品单价</th>
-      <th scope="col">商品数量</th>
-      <th scope="col">商品总价</th>
-    </tr>
-  </thead>
-  <!-- 假数据 -->
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td></td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-  </tbody>
-<!-- 表格3分页 -->
-</table>
-</div>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-</div>
-
 </div>
 
 

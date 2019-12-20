@@ -47,7 +47,8 @@ public class OrderToGenerateServlet extends HttpServlet {
 		//接收json数组并转换成List<OrderItem>
 		List<OrderItem> list=new ArrayList<OrderItem>();
 		float price=0;
-
+		
+		//生成订单表项对象，并设置属性值，存入orderinfo表
 		List<OrderItem> cart=(List<OrderItem>) request.getSession().getAttribute("items");
 		for (OrderItem p : cart) {
 			OrderItem orderItem=new OrderItem();
@@ -60,23 +61,23 @@ public class OrderToGenerateServlet extends HttpServlet {
 			System.out.println(orderItem);
 			list.add(orderItem);
 		}
-		//存入orderitem表
-		for(OrderItem orderItem:list) {
-			orderItemService.add(orderItem);
-		}
-		
-		//生成订单表项对象，并设置属性值，存入orderinfo表
 		OrderInfo orderInfo=new OrderInfo();
 		orderInfo.setId(uuid);
+		orderInfo.setOrderId(uuid);
 		orderInfo.setNum(list.size());
 		orderInfo.setPrice(price);
 		orderInfo.setStatus(0);
 		orderInfo.setUser_id(user.getId());
 		orderInfoService.add(orderInfo);
+
+		//存入orderitem表
+		for(OrderItem orderItem:list) {
+			orderItemService.add(orderItem);
+		}
 		
 		//移除session里面被选中的商品
-		List<OrderItem> orderItems=(List<OrderItem>) request.getSession().getAttribute("orderItems");
-		orderItems.clear();
+		cart.clear();
+		request.getSession().setAttribute("items", cart);
 		//返回刚刚选择的商品,放在弹出的付款页面中
 		request.getRequestDispatcher("shop.jsp").forward(request, response);
 		

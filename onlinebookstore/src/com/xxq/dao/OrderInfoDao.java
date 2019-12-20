@@ -20,8 +20,8 @@ public class OrderInfoDao {
 		int rows=0;
 		try {
 			conn=C3P0Util.getConnection();
-			String sql="insert into orderinfo values(?,?,?,?,?)";
-			rows=queryRunner.update(conn, sql,orderInfo.getId(),orderInfo.getNum(),orderInfo.getPrice()
+			String sql="insert into orderinfo values(?,?,?,?,?,?)";
+			rows=queryRunner.update(conn, sql,orderInfo.getId(),orderInfo.getOrderId(),orderInfo.getNum(),orderInfo.getPrice()
 					,orderInfo.getStatus(),orderInfo.getUser_id());
 		} catch (Exception e) {
 			e.printStackTrace();

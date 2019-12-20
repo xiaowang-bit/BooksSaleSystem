@@ -92,13 +92,11 @@
                                         <li>
                                             <a href="index.jsp" class="minicart-btn">
                                                 <i class="lnr lnr-cart"></i>
-                                                <div class="notification">2</div>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="AllOrder.html" class="minicart-btn">
+                                            <a href="OrderStatus0Servlet" class="minicart-btn">
                                                 <i class="lnr lnr-cart"></i>
-                                                <div class="notification">2</div>
                                             </a>
                                         </li>
                                     </ul>
@@ -203,14 +201,17 @@
 
                             <!-- start pagination area -->
                             <div class="paginatoin-area text-center">
-                                <ul class="pagination-box">
-                                    <li><a class="previous" href="#"><i class="lnr lnr-chevron-left"></i></a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a class="next" href="#"><i class="lnr lnr-chevron-right"></i></a></li>
-                                </ul>
+                                     <a href="/StudentTopic/StuSelectServlet?currentPage=1" style="margin-left: 195px;">首页</a>
+                                    <a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.currentPage==1?1:sessionScope.stus.currentPage-1}">上一页</a>
+                                    <p>${sessionScope.stus.currentPage}/${sessionScope.stus.totalPage}</p>
+                                    <a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.currentPage>sessionScope.stus.totalPage?sessionScope.stus.currentPage%sessionScope.stus.totalPage+1:sessionScope.stus.totalPage}">下一页</a>
+                                    <a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.totalPage}">尾页</a>
                             </div>
+                           
+				
+				
+				
+		</div>	
                             <!-- end pagination area -->
                         </div>
                     </div>

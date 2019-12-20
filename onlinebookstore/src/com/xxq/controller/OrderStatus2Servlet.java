@@ -34,9 +34,9 @@ public class OrderStatus2Servlet extends HttpServlet {
 		OrderInfoService orderInfoService=new OrderInfoService();
 		//返回status=2的商品(已签收)给页面，作为代付款订单
 		List<OrderInfo> orderInfos=orderInfoService.getByStatus(2);
-		request.setAttribute("received", orderInfos);
-//		String jsString=JSONObject.toJSONString(orderInfos);
-//		response.getWriter().write(jsString);
+		request.setAttribute("will_pay", orderInfos);
+		request.getRequestDispatcher("AllOrder.jsp").forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
