@@ -19,7 +19,8 @@ public class OrderToPayServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//处理订单付款
+		//处理订单的付款
+		
 		//处理中文乱码
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");

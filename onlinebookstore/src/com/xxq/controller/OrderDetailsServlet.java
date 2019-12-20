@@ -45,13 +45,14 @@ public class OrderDetailsServlet extends HttpServlet {
 			orderDetails.setOrderItem(orderItem);
 			list.add(orderDetails);
 		}
+		request.setAttribute("orderDetails", list);
 		//传json数据到前台
-		String jsString=JSONObject.toJSONString(list);
-		response.getWriter().write(jsString);
+//		String jsString=JSONObject.toJSONString(list);
+//		response.getWriter().write(jsString);
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
+	
 }

@@ -26,6 +26,7 @@ public class OrderStatus0Servlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//返回前台待付款订单数据
+		
 		//处理中文乱码
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -33,8 +34,9 @@ public class OrderStatus0Servlet extends HttpServlet {
 		OrderInfoService orderInfoService=new OrderInfoService();
 		//返回status=0的商品(待付款)给页面，作为代付款订单
 		List<OrderInfo> orderInfos=orderInfoService.getByStatus(0);
-		String jsString=JSONObject.toJSONString(orderInfos);
-		response.getWriter().write(jsString);
+		request.setAttribute("will_pay", orderInfos);
+//		String jsString=JSONObject.toJSONString(orderInfos);
+//		response.getWriter().write(jsString);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

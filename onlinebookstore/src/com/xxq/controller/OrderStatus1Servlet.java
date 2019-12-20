@@ -17,13 +17,15 @@ import com.xxq.service.OrderInfoService;
 @WebServlet("/OrderStatus1Servlet")
 public class OrderStatus1Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
     public OrderStatus1Servlet() {
+    	
         super();
     }
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//返回前台已付款订单数据
+		
 		//处理中文乱码
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -31,8 +33,9 @@ public class OrderStatus1Servlet extends HttpServlet {
 		OrderInfoService orderInfoService=new OrderInfoService();
 		//返回status=1的商品(已付款)给页面，作为代付款订单
 		List<OrderInfo> orderInfos=orderInfoService.getByStatus(1);
-		String jsString=JSONObject.toJSONString(orderInfos);
-		response.getWriter().write(jsString);
+		request.setAttribute("payed", orderInfos);
+//		String jsString=JSONObject.toJSONString(orderInfos);
+//		response.getWriter().write(jsString);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

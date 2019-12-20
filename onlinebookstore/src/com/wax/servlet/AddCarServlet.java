@@ -3,6 +3,7 @@ package com.wax.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,26 +28,42 @@ public class AddCarServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		BookService bs=new BookService();
-		Long book_price = Long.parseLong(request.getParameter("book_price"));
+		Float book_price = Float.parseFloat(request.getParameter("book_price"));
 		String book_id = request.getParameter("book_id");
-		int num = Integer.parseInt(request.getParameter("num"));
+		String nums = request.getParameter("num"+book_id);
+		if(nums==null) {
+			nums="1";
+		}
+		int num = Integer.parseInt(nums);
 		String id=CreateOderId.getOrderCode(System.currentTimeMillis());
-		List<OrderItem> oldItem = (List<OrderItem>) request.getSession().getAttribute("items");
-		for(OrderItem od:oldItem) {
-			if(book_id.equals(od.getBook_id())){
-				od.setNum(num);
-				od.setPrice(num*book_price);
-			}else {
-				OrderItem item=new OrderItem();
-				item.setId(id);
-				item.setBook_id(book_id);
-				item.setNum(num);
-				item.setPrice(book_price*num);
-				oldItem.add(item);
+		List<OrderItem> oldItem=(List<OrderItem>) request.getSession().getAttribute("items");
+		if(oldItem!=null&&oldItem.size()>0) {
+			for(OrderItem od:oldItem) {
+				if(book_id.equals(od.getBook_id())){
+					od.setNum(num);
+					od.setPrice(num*book_price);
+				}else {
+					OrderItem item=new OrderItem();
+					item.setId(id);
+					item.setBook_id(book_id);
+					item.setNum(num);
+					item.setPrice(book_price*num);
+					oldItem.add(item);
+				}
 			}
+		}else {
+			oldItem=new ArrayList<OrderItem>();
+			OrderItem item=new OrderItem();
+			item.setId(id);
+			item.setBook_id(book_id);
+			item.setNum(num);
+			item.setPrice(book_price*num);
+			System.out.println(oldItem);
+			item.setOrderInfo_id("0");
+			oldItem.add(item);
 		}
 		request.getSession().setAttribute("items", oldItem);	
-		request.getRequestDispatcher("shop").forward(request, response);
+		request.getRequestDispatcher("shop.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

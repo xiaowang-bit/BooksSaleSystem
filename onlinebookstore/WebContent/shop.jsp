@@ -90,7 +90,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="index.html" class="minicart-btn">
+                                            <a href="index.jsp" class="minicart-btn">
                                                 <i class="lnr lnr-cart"></i>
                                                 <div class="notification">2</div>
                                             </a>
@@ -183,7 +183,7 @@
                                                 <img class="sec-img" src=".${item.imageName}" alt="product">
                                             </a>
                                             <div class="button-group">
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to Cart"><i class="lnr lnr-cart"></i></a>
+                                                <a href="AddCarServlet?book_id=${item.id}&book_price=${item.price}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><i class="lnr lnr-cart"></i></a>
                                             </div>
                                         </figure>
                                         <div class="product-caption">

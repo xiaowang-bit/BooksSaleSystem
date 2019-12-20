@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,46 +98,20 @@
         <tr>
       <th scope="col"></th>
           <th scope="col">订单编号</th>
-          <th scope="col">书籍名称</th>
-          <th scope="col">商品单价</th>
           <th scope="col">商品数量</th>
-          <th scope="col">商品总价</th>
+          <th scope="col">小计</th>
         </tr>
       </thead>
 <!-- 假数据 -->
         <tbody>
+		<c:forEach var = "item" items="${requestScope.will_pay }">
           <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Thornton</td>
-            <td>@fat</td>
+            <td>${item.id }</td>
+            <td>${item.id }</td>
+            <td>${item.id }</td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
+          </c:forEach>
         </tbody>
     </table>
 <!-- 表格1分页 -->

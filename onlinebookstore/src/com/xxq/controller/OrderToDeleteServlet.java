@@ -19,6 +19,7 @@ public class OrderToDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//删除订单
+		
 		//处理中文乱码
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
