@@ -10,8 +10,8 @@ public class OrderInfoService {
 	public int add(OrderInfo orderInfo) {
 		return orderInfoDao.add(orderInfo);
 	}
-	public List<OrderInfo> getByStatus(int status) {
-		return orderInfoDao.getByStatus(status);
+	public List<OrderInfo> getByStatus(int status,String id) {
+		return orderInfoDao.getByStatus(status,id);
 	}
 	public OrderInfo getById(String id) {
 		return orderInfoDao.getById(id);

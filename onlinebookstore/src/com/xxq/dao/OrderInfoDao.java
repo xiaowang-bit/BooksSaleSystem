@@ -30,12 +30,12 @@ public class OrderInfoDao {
 		}
 		return rows;
 	}
-	public List<OrderInfo> getByStatus(int status) {
+	public List<OrderInfo> getByStatus(int status,String id) {
 		Connection conn=C3P0Util.getConnection();
 		List<OrderInfo> list=null;
 		try {
-			String sql="select * from orderinfo where status=?";
-			list=queryRunner.query(conn, sql,new BeanListHandler<OrderInfo>(OrderInfo.class), status);
+			String sql="select * from orderinfo where status=? and user_id=?";
+			list=queryRunner.query(conn, sql,new BeanListHandler<OrderInfo>(OrderInfo.class), status,id);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

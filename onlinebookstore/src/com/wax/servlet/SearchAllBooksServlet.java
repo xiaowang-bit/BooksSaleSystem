@@ -11,16 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.wax.service.BookService;
-import com.wax.service.CategoryService;
 import com.xxq.model.Book;
-import com.xxq.model.Category;
 import com.xxq.utils.Page;
 
-@WebServlet("/SearchBookListServlet")
-public class SearchBookListServlet extends HttpServlet {
+@WebServlet("/SearchAllBooksServlet")
+public class SearchAllBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public SearchBookListServlet() {
+    public SearchAllBooksServlet() {
         super();
     }
 
@@ -29,7 +27,6 @@ public class SearchBookListServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		String book_name = request.getParameter("book_name");
 		String cpage = request.getParameter("currentPage");
 		if(cpage==null) {
 			cpage="1";
@@ -38,14 +35,11 @@ public class SearchBookListServlet extends HttpServlet {
 		int pagesize=8;
 		BookService bs=new BookService();
 		int totalCount = bs.getTotalCount();
-		List<Book> ctList = bs.searchBook(book_name,currentPage, pagesize);
-		Page page=new Page(ctList,totalCount,  currentPage,  pagesize);
+		List<Book> searchAllBook = bs.searchAllBook(currentPage, pagesize);
+		Page page=new Page(searchAllBook,totalCount,  currentPage,  pagesize);
 		session.setAttribute("books",page);
-		if(ctList.size()>0&&ctList!=null) {
-			request.getRequestDispatcher("shop.jsp").forward(request, response);;
-		}else {
-			request.getRequestDispatcher("shop.jsp").forward(request, response);
-		}
+		request.getRequestDispatcher("shop.jsp").forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

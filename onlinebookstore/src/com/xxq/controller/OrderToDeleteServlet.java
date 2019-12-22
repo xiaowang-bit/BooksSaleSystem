@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import com.xxq.service.OrderInfoService;
 
@@ -27,11 +28,16 @@ public class OrderToDeleteServlet extends HttpServlet {
 		OrderInfoService orderInfoService=new OrderInfoService();
 		String id=request.getParameter("id");//获取订单的id
 		int rows=orderInfoService.delete(id);
-		if(rows>0) {
-			response.sendRedirect(request.getContextPath()+"/oderItems.html");//返回到待付款订单页面
-		}else {
-			response.sendRedirect(request.getContextPath()+"/error.html");
-		}
+//		if(rows>0) {
+//			request.getRequestDispatcher("AllOrder.jsp");//返回到待付款订单页面
+//		}else {
+//			request.getRequestDispatcher("fail.jsp");
+//		}
+		Object[] options = { "确定" }; 
+    	JOptionPane.showOptionDialog(null, "删除成功！", "提示", 
+    	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+    	null, options, options[0]); 
+    	request.getRequestDispatcher("AllOrder.jsp").forward(request, response);;//返回到待付款订单页面
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

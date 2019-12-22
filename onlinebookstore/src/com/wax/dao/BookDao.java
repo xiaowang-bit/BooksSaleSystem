@@ -29,7 +29,37 @@ public class BookDao {
 		}
 		return row;
 	}
-	public List<Book> searchById(String id) {
+	public List<Book> searchById(String name,int currentPage,int pagesize) {
+		/**
+		 * @param 传入一个Book的id
+		 * @return Book列表
+		 * @author 王澳星
+		 */
+		List<Book> list=new ArrayList<Book>();
+		String sql="select * from book where bookname like ? limit ?,?";
+		try {
+			list = qr.query(sql, new BeanListHandler<Book>(Book.class),name+"%",(currentPage-1)*pagesize,pagesize);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public List<Book> searchByCategoryName(String id,int currentPage,int pagesize) {
+		/**
+		 * @param 传入一个Book的id
+		 * @return Book列表
+		 * @author 王澳星
+		 */
+		List<Book> list=new ArrayList<Book>();
+		String sql="select * from book where category_id = ? limit ?,?";
+		try {
+			list = qr.query(sql, new BeanListHandler<Book>(Book.class),id,(currentPage-1)*pagesize,pagesize);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public List<Book> searchById(String name) {
 		/**
 		 * @param 传入一个Book的id
 		 * @return Book列表
@@ -38,7 +68,7 @@ public class BookDao {
 		List<Book> list=new ArrayList<Book>();
 		String sql="select * from book where id=?";
 		try {
-			list = qr.query(sql, new BeanListHandler<Book>(Book.class),id);
+			list = qr.query(sql, new BeanListHandler<Book>(Book.class),name);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

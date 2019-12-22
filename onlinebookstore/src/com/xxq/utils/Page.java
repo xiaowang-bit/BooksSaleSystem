@@ -3,8 +3,10 @@ package com.xxq.utils;
 import java.util.List;
 import java.util.Map;
 
+import com.xxq.model.Book;
+
 public class Page {
-	private List<Map<String, Object>> objectList;
+	private List objectList;
 	private int totalCount;
 	private int pagesize;
 	private int currentPage;
@@ -12,10 +14,10 @@ public class Page {
 	public Page() {
 		super();
 	}
-	public List<Map<String, Object>> getObjectList() {
+	public List getObjectList() {
 		return objectList;
 	}
-	public void setObjectList(List<Map<String, Object>> objectList) {
+	public void setObjectList(List<Object> objectList) {
 		this.objectList = objectList;
 	}
 	public int getTotalCount() {
@@ -36,13 +38,13 @@ public class Page {
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
-	public Page(List<Map<String, Object>> objectList, int totalCount, int currentPage, int pagesize) {
+	public Page(List<Book> searchAllBook, int totalCount, int currentPage, int pagesize) {
 		super();
-		this.objectList = objectList;
+		this.objectList = searchAllBook;
 		this.pagesize = pagesize;
 		this.totalCount = totalCount;
 		this.currentPage = currentPage;
-		this.totalPage =  this.totalCount%8==0?this.totalCount/8:(this.totalCount/8+1);
+		this.totalPage =  this.totalCount%pagesize==0?this.totalCount/pagesize:(this.totalCount/pagesize+1);
 	}
 	public int getPagesize() {
 		return pagesize;

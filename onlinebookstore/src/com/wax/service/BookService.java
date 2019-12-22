@@ -25,14 +25,24 @@ public class BookService {
 		return row;
 	}
 
-	public List<Book> searchBook(String id ) {
+	public List<Book> searchBook(String name,int currentPage,int pagesize) {
 		/**
 		 * @author 王澳星
 		 * @param Book的id
 		 * @return Book列表
 		 */
 		 List<Book> list=new ArrayList<Book>();
-		 list = cdao.searchById(id);
+		 list = cdao.searchById(name,currentPage, pagesize);
+		 return list;
+	}
+	public List<Book> searchCategoryBook(String id,int currentPage,int pagesize) {
+		/**
+		 * @author 王澳星
+		 * @param Book的id
+		 * @return Book列表
+		 */
+		 List<Book> list=new ArrayList<Book>();
+		 list = cdao.searchByCategoryName(id, currentPage, pagesize);
 		 return list;
 	}
 	public List<Book> searchAllBook(int currentPage,int pagesize) {

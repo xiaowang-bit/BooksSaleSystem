@@ -78,6 +78,8 @@
 
 
 <div class="container-fluid my-order-page">
+		<div class ="col-12" style="background:#000; color:#FFF;height: 40px;">
+		<span style="font-size:20px;text-align:center;display:block;position: relative;top:50%;transform:translateY(-50%);">我 的 订 单</span></div>
     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link"  href="OrderStatus0Servlet" role="tab" aria-controls="home" aria-selected="true">待付款订单</a>
@@ -100,7 +102,7 @@
           <th scope="col">订单编号</th>
           <th scope="col">商品数量</th>
           <th scope="col">小计</th>
-          <th scope="col">操作</th>
+          <th scope="col">订单操作</th>
         </tr>
       </thead>
 <!-- 假数据 -->
@@ -111,7 +113,7 @@
             <td>${item.id }</td>
             <td>${item.num }</td>
             <td>${item.price }</td>
-            <td><a href="OrderToDeleteServlet?$item.id =${item.id}">删除</a>&nbsp;<a href="OrderToPayServlet?$item.id =${item.id}">提交</a></td>
+            <td><a href="OrderToPayServlet?id=${item.id}">提交</a></td>
           </tr>
           </c:forEach>
         </tbody>

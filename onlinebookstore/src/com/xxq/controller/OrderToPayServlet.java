@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import com.xxq.model.OrderInfo;
 import com.xxq.service.OrderInfoService;
@@ -26,15 +27,17 @@ public class OrderToPayServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		OrderInfoService orderInfoService=new OrderInfoService();
-		String id=request.getParameter("id");//获取订单的id
-		OrderInfo orderInfo=orderInfoService.getById(id);
+		String id2=request.getParameter("id");//获取订单的id
+		OrderInfo orderInfo=orderInfoService.getById(id2);
 		orderInfo.setStatus(1);
 		int rows=orderInfoService.update(orderInfo);
 		if(rows>0) {
-			response.sendRedirect(request.getContextPath()+"/orderItems.html");//返回到待付款订单页面
-		}else {
-			response.sendRedirect(request.getContextPath()+"/error.html");
-		}
+		Object[] options = { "确定" }; 
+    	JOptionPane.showOptionDialog(null, "修改成功！", "提示", 
+    	JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, 
+    	null, options, options[0]); 
+    	request.getRequestDispatcher("AllOrder.jsp").forward(request, response);
+    	}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

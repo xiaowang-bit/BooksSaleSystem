@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xxq.model.OrderInfo;
+import com.xxq.model.User;
 import com.xxq.service.OrderInfoService;
 
 
@@ -31,8 +32,11 @@ public class OrderStatus1Servlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		OrderInfoService orderInfoService=new OrderInfoService();
+		User attribute =(User) request.getSession().getAttribute("login_user");
+		String id = attribute.getId();
+		//返回status=0的商品(待付款)给页面，作为代付款订单
+		List<OrderInfo> orderInfos=orderInfoService.getByStatus(1,id);
 		//返回status=1的商品(已付款)给页面，作为代付款订单
-		List<OrderInfo> orderInfos=orderInfoService.getByStatus(1);
 		request.setAttribute("will_pay", orderInfos);
 		request.getRequestDispatcher("AllOrder.jsp").forward(request, response);
 

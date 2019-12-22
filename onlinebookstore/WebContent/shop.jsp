@@ -96,7 +96,7 @@
                                         </li>
                                         <li>
                                             <a href="OrderStatus0Servlet" class="minicart-btn">
-                                                <i class="lnr lnr-cart"></i>
+                                                <i class="lnr lnr-license"></i>
                                             </a>
                                         </li>
                                     </ul>
@@ -111,7 +111,68 @@
             <!-- header middle area end -->
         </div>
         <!-- main header start -->
->
+		<!-- slider area start -->
+        <section class="slider-area">
+            <div class="hero-slider-active slick-arrow-style slick-arrow-style_hero slick-dot-style">
+                
+
+                <!-- single slider item start -->
+                <div class="hero-single-slide">
+                    <div class="hero-slider-item bg-img" data-bg="assets/img/slider/b1.jpg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="hero-slider-content slide-1">
+                                         <span style="color:white;">Your Online Bookstore</span>
+                                        <h1 style="color:white;">Find Your Book</h1>
+                                        <h2 style="color:white;">&Fresh Your Mind</h2>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single slider item start -->
+                <!-- single slider item start -->
+                <div class="hero-single-slide">
+                    <div class="hero-slider-item bg-img" data-bg="assets/img/slider/b2.jpg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="hero-slider-content slide-2">
+                                        <span style="color:white;">Your Online Bookstore</span>
+                                        <h1 style="color:white;">Find Your Book</h1>
+                                        <h2 style="color:white;">&Fresh Your Mind</h2>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single slider item start -->
+                <!-- single slider item start -->
+                <div class="hero-single-slide">
+                    <div class="hero-slider-item bg-img" data-bg="assets/img/slider/b3.jpg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="hero-slider-content slide-3">
+                                        <span style="color:white;">Your Online Bookstore</span>
+                                        <h1 style="color:white;">Find Your Book</h1>
+                                        <h2 style="color:white;">&Fresh Your Mind</h2>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single slider item start -->
+            </div>
+        </section>
+        <!-- slider area end -->
 
 
 
@@ -146,10 +207,14 @@
                                     <div class="col-lg-7 col-md-6 order-2 order-md-1">
                                         <div class="top-bar-left">
                                             <div class="product-short">
-                                                <form method="post" action="SearchCategoryListServlet">
-												<input type="text"name="category_name" style="color: ;border-radius: 10px;">
-                                            	<input type="submit"value="分类查询" style="color: ;border-radius: 10px;">
-                                            	</form>                                            
+                                            <form action="SearchCategoryListServlet" method="post">
+                                                <select name="category_id">
+	    			    							<c:forEach var = "item" items="${sessionScope.categorys }">
+		    			    						<option value="${item.id}">${item.name}</option>
+	    			    							</c:forEach>
+		    									</select>
+		    									<input type="submit" class="btn btn-sm btn-default"value="查询">
+                                            </form>                                            
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +236,7 @@
 								<!-- product item list wrapper start -->
                             <div class="shop-product-wrap grid-view row mbn-40">
                                 <!-- product single item start -->
-                               <c:forEach var = "item" items="${sessionScope.books }">
+                               <c:forEach var = "item" items="${sessionScope.books.objectList }">
                                 <div class="col-md-3 col-sm-6">
                                     <!-- product grid start -->
                                     <div class="product-item">
@@ -199,20 +264,6 @@
                             <!-- product item list wrapper end -->
 
 
-                            <!-- start pagination area -->
-                            <div class="paginatoin-area text-center">
-                                     <a href="/StudentTopic/StuSelectServlet?currentPage=1" style="margin-left: 195px;">首页</a>
-                                    <a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.currentPage==1?1:sessionScope.stus.currentPage-1}">上一页</a>
-                                    <p>${sessionScope.stus.currentPage}/${sessionScope.stus.totalPage}</p>
-                                    <a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.currentPage>sessionScope.stus.totalPage?sessionScope.stus.currentPage%sessionScope.stus.totalPage+1:sessionScope.stus.totalPage}">下一页</a>
-                                    <a href="/StudentTopic/StuSelectServlet?currentPage=${sessionScope.stus.totalPage}">尾页</a>
-                            </div>
-                           
-				
-				
-				
-		</div>	
-                            <!-- end pagination area -->
                         </div>
                     </div>
                     <!-- shop main wrapper end -->
@@ -220,6 +271,15 @@
             </div>
         </div>
         <!-- page main wrapper end -->
+        <!-- start pagination area -->
+        <div  class="col-12" align="center">
+                <a href="SearchAllBooksServlet?currentPage=1" style="margin-left: 195px;">首页</a>
+                <a href="SearchAllBooksServlet?currentPage=${sessionScope.books.currentPage==1?1:sessionScope.books.currentPage-1}">上一页</a>
+                <span>${sessionScope.books.currentPage}/${sessionScope.books.totalPage}</span>
+                <a href="SearchAllBooksServlet?currentPage=${sessionScope.books.currentPage>sessionScope.books.totalPage?sessionScope.books.currentPage%sessionScope.books.totalPage+1:sessionScope.books.totalPage}">下一页</a>
+                <a href="SearchAllBooksServlet?currentPage=${sessionScope.books.totalPage}">尾页</a>
+        </div>
+        <!-- end pagination area -->
     </main>
     <!-- main wrapper end -->
 
